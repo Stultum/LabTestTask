@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">LabTestTask</string>
+    <string name="register">Регистрация</string>
+    <string name="name">Имя</string>
+    <string name="secondName">Фамилия</string>
+    <string name="calendar">Calendar</string>
+    <string name="password">Пароль</string>
+    <string name="proofPassword">Подтвердите пароль</string>
 </resources>

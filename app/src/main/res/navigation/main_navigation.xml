@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.labtesttask.fragment.LoginFragment"
+        android:label="fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_mainWindowFragment"
+            app:destination="@id/mainWindowFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@+id/navigation"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_mainWindowFragment_without_anim"
+            app:destination="@id/mainWindowFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainWindowFragment"
+        android:name="com.example.labtesttask.fragment.MainWindowFragment"
+        android:label="fragment_main_window">
+        <action
+            android:id="@+id/action_mainWindowFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"
+            app:popUpTo="@+id/navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>
