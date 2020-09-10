@@ -6,29 +6,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModel
+import androidx.navigation.findNavController
 import com.example.labtesttask.R
+import com.example.labtesttask.databinding.LoginFragmentBinding
 import com.example.labtesttask.viewmodel.LoginViewModel
 
-class LoginFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = LoginFragment()
-    }
-
+class LoginFragment : Fragment(){
+    private lateinit var binding: LoginFragmentBinding
     private lateinit var viewModel: LoginViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.login_fragment, container, false)
-    }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
-        // TODO: Use the ViewModel
+        binding = DataBindingUtil.inflate(inflater, R.layout.login_fragment, container, false)
+        binding.lifecycleOwner = this
+        return binding.root
     }
 
 }
