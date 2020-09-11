@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.labtesttask.repository.ProfileRepository
 
-class ViewModelFactory(private val profileRepository: ProfileRepository) :
+class ViewModelFactory() :
     ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T =
-        modelClass.getConstructor(ProfileRepository::class.java).newInstance(profileRepository)
+        modelClass.getConstructor().newInstance()
 }
