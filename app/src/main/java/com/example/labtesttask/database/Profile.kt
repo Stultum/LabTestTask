@@ -1,14 +1,11 @@
-package com.example.labtesttask.database
+package com.example.shiftlabtesttask.profile
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import java.io.Serializable
 
-@Entity(tableName = "profile_table")
 data class Profile(
-    @PrimaryKey
-    var firstName: String,
+    var name: String,
     var secondName: String,
     var password: String,
-    var birthDate: String
-)
+    var birthday: String
+) : Serializable
 

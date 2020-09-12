@@ -47,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textCapSentences"
                     android:singleLine="true"
-                    android:text="@={loginViewModel.firstName}"/>
+                    android:text="@={loginViewModel.firstName}" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -65,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textCapSentences"
                     android:singleLine="true"
-                    android:text="@={loginViewModel.secondName}"/>
+                    android:text="@={loginViewModel.secondName}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -77,6 +77,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/rubik_mono_one"
+                    android:text="@{loginViewModel.birthday == null? @string/birthday : @string/birthday_with_data(loginViewModel.getBirthdayString())}"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp"
@@ -92,6 +93,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/rubik_mono_one"
+                    android:text="@{@string/age(loginViewModel.age)}"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp"
@@ -127,7 +129,7 @@
                 android:layout_marginTop="@dimen/smallMargin"
                 android:layout_marginBottom="@dimen/smallMargin"
                 android:hint="@string/password"
-                >
+                app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/passwordInputEditText"
@@ -135,7 +137,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
                     android:singleLine="true"
-                    android:text="@={loginViewModel.password}"/>
+                    android:text="@={loginViewModel.password}" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -146,7 +148,7 @@
                 android:layout_marginTop="@dimen/smallMargin"
                 android:layout_marginBottom="@dimen/smallMargin"
                 android:hint="@string/proofPassword"
-                >
+                app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/passwordProofInputEditText"
@@ -154,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
                     android:singleLine="true"
-                    android:text="@={loginViewModel.passwordProof}"/>
+                    android:text="@={loginViewModel.passwordProof}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -164,7 +166,9 @@
                 android:layout_marginTop="@dimen/defaultMargin"
                 android:layout_marginBottom="@dimen/defaultMargin"
                 android:background="@drawable/button_background_transparent"
+                android:enabledAndBackground="@{!(loginViewModel.firstName.empty || loginViewModel.secondName.empty || loginViewModel.password.empty || loginViewModel.passwordProof.empty)}"
                 android:fontFamily="@font/rubik_mono_one"
+                android:onClick="@{() -> loginViewModel.validate() ? loginViewModel.register() : null}"
                 android:text="@string/register"
                 android:textSize="18sp" />
 

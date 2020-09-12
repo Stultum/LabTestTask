@@ -6,4 +6,13 @@
     <string name="calendar">Calendar</string>
     <string name="password">Пароль</string>
     <string name="proofPassword">Подтвердите пароль</string>
+    <string name="nameError">Имя должно содержать минимум 2 символа</string>
+    <string name="secondNameError">Фамилия должна содержать минимум 2 символа</string>
+    <string name="passwordError">Пароль должен содержать буквы верхнего и нижнего регистра и цифры</string>
+    <string name="dateError">Выберите дату своего рождения</string>
+    <string name="ageError">Минимальный возраст пользователя 12 лет</string>
+    <string name="passwordProofError">Пароли не совпадают</string>
+    <string name="age">Возраст: %1$d</string>
+    <string name="birthday">Дата рождения</string>
+    <string name="birthday_with_data">Дата рождения: %1$s</string>
 </resources>

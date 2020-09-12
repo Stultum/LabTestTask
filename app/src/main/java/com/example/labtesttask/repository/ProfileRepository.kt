@@ -1,25 +1,51 @@
 package com.example.labtesttask.repository
 
-import androidx.lifecycle.LiveData
-import com.example.labtesttask.database.Profile
-import com.example.labtesttask.database.ProfileDataBase
+import android.content.SharedPreferences
+import com.example.shiftlabtesttask.profile.Profile
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class ProfileRepository(private val dataBase: ProfileDataBase) {
+class ProfileRepository(private val sharedPreferences: SharedPreferences) {
+
+    companion object {
+        const val PROFILE_PREF = "pp"
+        private const val NAME = "name"
+        private const val SECOND_NAME = "sName"
+        private const val PASSWORD = "password"
+        private const val BIRTHDAY = "birthday"
+    }
+
+    suspend fun isContainLoggedProfile() =
+        withContext(Dispatchers.IO) { sharedPreferences.contains(NAME) }
+
     suspend fun writeProfile(profile: Profile) {
         withContext(Dispatchers.IO) {
-            dataBase.profileDataBaseDao.insert(profile)
+            sharedPreferences.edit()
+                .putString(NAME, profile.name)
+                .putString(SECOND_NAME, profile.secondName)
+                .putString(PASSWORD, profile.password)
+                .putString(BIRTHDAY, profile.birthday)
+                .apply()
         }
     }
 
-    suspend fun readProfile(profile: LiveData<Profile>) {
+    suspend fun readProfile() = withContext(Dispatchers.IO) {
+        Profile(
+            sharedPreferences.getString(NAME, "")!!,
+            sharedPreferences.getString(SECOND_NAME, "")!!,
+            sharedPreferences.getString(PASSWORD, "")!!,
+            sharedPreferences.getString(BIRTHDAY, "")!!
+        )
+    }
+
+    suspend fun clearProfile() {
         withContext(Dispatchers.IO) {
-            val profileDB = dataBase.profileDataBaseDao.getProfile()
-            profile.value?.firstName = profileDB.value!!.firstName
-            profile.value?.secondName = profileDB.value!!.secondName
-            profile.value?.password = profileDB.value!!.password
-            profile.value?.birthDate = profileDB.value!!.birthDate
+            sharedPreferences.edit()
+                .remove(NAME)
+                .remove(SECOND_NAME)
+                .remove(PASSWORD)
+                .remove(BIRTHDAY)
+                .apply()
         }
     }
 }

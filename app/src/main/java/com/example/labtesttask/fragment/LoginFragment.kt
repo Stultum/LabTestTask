@@ -13,15 +13,13 @@ import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import com.example.labtesttask.R
-import com.example.labtesttask.database.ProfileDataBase
 import com.example.labtesttask.databinding.LoginFragmentBinding
 import com.example.labtesttask.repository.ProfileRepository
 import com.example.labtesttask.viewmodel.LoginViewModel
 import com.example.labtesttask.viewmodelfactory.ViewModelFactory
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.login_fragment.*
 import java.util.*
 
@@ -36,13 +34,33 @@ class LoginFragment : Fragment(){
 
         binding = DataBindingUtil.inflate(inflater, R.layout.login_fragment, container, false)
         binding.lifecycleOwner = this
+
+        initViewModel()
+        autoShowError()
+        autoHideErrors()
+
         binding.pickDate.setOnClickListener { showDatePicker() }
         viewModel.birthday.observe(this, Observer { showBirthday() })
-        val factory = ViewModelFactory()
-        viewModel = ViewModelProviders.of(this, factory).get(LoginViewModel::class.java)
-        autoHideErrors()
         return binding.root
     }
+    private fun initViewModel() {
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelFactory {
+                LoginViewModel(
+                    ProfileRepository(
+                        this.context?.getSharedPreferences(
+                            ProfileRepository.PROFILE_PREF,
+                            Context.MODE_PRIVATE
+                        )!!
+                    )
+                )
+            }).get(
+            LoginViewModel::class.java
+        )
+        binding.loginViewModel = viewModel
+    }
+
 
 
     private fun autoHideErrors(){
@@ -67,32 +85,47 @@ class LoginFragment : Fragment(){
     {
         viewModel.firstNameError.observe(this, Observer {
             if(it){
-                binding.firstNameInputLayout.error = ""
+                binding.firstNameInputLayout.error = getString(R.string.nameError)
                 showSoftKeyboard(firstNameInputEditText)
             }
         })
 
         viewModel.secondNameError.observe(this, Observer {
             if(it){
-                binding.secondNameInputLayout.error = ""
+                binding.secondNameInputLayout.error = getString(R.string.secondNameError)
                 showSoftKeyboard(secondNameInputEditText)
             }
         })
 
         viewModel.passwordError.observe(this, Observer {
             if(it){
-                binding.passwordInputLayout.error = ""
+                binding.passwordInputLayout.error = getString(R.string.passwordError)
                 showSoftKeyboard(passwordInputEditText)
             }
         })
 
         viewModel.passwordProofError.observe(this, Observer {
             if(it){
-                binding.passwordProofInputLayout.error = ""
+                binding.passwordProofInputLayout.error = getString(R.string.passwordProofError)
                 showSoftKeyboard(passwordProofInputEditText)
             }
         })
 
+        viewModel.birthDateError.observe(this, Observer {
+            if(it){
+                Snackbar.make(this.view!!, R.string.dateError, Snackbar.LENGTH_SHORT)
+                    .show()
+            }
+            showDatePicker()
+        })
+
+        viewModel.ageError.observe(this, Observer {
+            if(it){
+                Snackbar.make(this.view!!, R.string.ageError, Snackbar.LENGTH_SHORT)
+                    .show()
+            }
+            showDatePicker()
+        })
 
     }
 
