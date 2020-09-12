@@ -23,7 +23,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.login_fragment.*
 import java.util.*
 
-class LoginFragment : Fragment(){
+class LoginFragment : Fragment() {
     private lateinit var binding: LoginFragmentBinding
     private lateinit var viewModel: LoginViewModel
 
@@ -43,6 +43,7 @@ class LoginFragment : Fragment(){
         viewModel.birthday.observe(this, Observer { showBirthday() })
         return binding.root
     }
+
     private fun initViewModel() {
         viewModel = ViewModelProvider(
             this,
@@ -62,8 +63,7 @@ class LoginFragment : Fragment(){
     }
 
 
-
-    private fun autoHideErrors(){
+    private fun autoHideErrors() {
         binding.firstNameInputLayout.editText?.addTextChangedListener {
             binding.firstNameInputLayout.error = null
         }
@@ -81,50 +81,49 @@ class LoginFragment : Fragment(){
         }
     }
 
-    private fun autoShowError()
-    {
+    private fun autoShowError() {
         viewModel.firstNameError.observe(this, Observer {
-            if(it){
+            if (it) {
                 binding.firstNameInputLayout.error = getString(R.string.nameError)
                 showSoftKeyboard(firstNameInputEditText)
             }
         })
 
         viewModel.secondNameError.observe(this, Observer {
-            if(it){
+            if (it) {
                 binding.secondNameInputLayout.error = getString(R.string.secondNameError)
                 showSoftKeyboard(secondNameInputEditText)
             }
         })
 
         viewModel.passwordError.observe(this, Observer {
-            if(it){
+            if (it) {
                 binding.passwordInputLayout.error = getString(R.string.passwordError)
                 showSoftKeyboard(passwordInputEditText)
             }
         })
 
         viewModel.passwordProofError.observe(this, Observer {
-            if(it){
+            if (it) {
                 binding.passwordProofInputLayout.error = getString(R.string.passwordProofError)
                 showSoftKeyboard(passwordProofInputEditText)
             }
         })
 
         viewModel.birthDateError.observe(this, Observer {
-            if(it){
+            if (it) {
                 Snackbar.make(this.view!!, R.string.dateError, Snackbar.LENGTH_SHORT)
                     .show()
+                showDatePicker()
             }
-            showDatePicker()
         })
 
         viewModel.ageError.observe(this, Observer {
-            if(it){
+            if (it) {
                 Snackbar.make(this.view!!, R.string.ageError, Snackbar.LENGTH_SHORT)
                     .show()
+                showDatePicker()
             }
-            showDatePicker()
         })
 
     }
@@ -136,7 +135,7 @@ class LoginFragment : Fragment(){
         }
     }
 
-    private fun showDatePicker(){
+    private fun showDatePicker() {
         val calendar =
             if (viewModel.birthday.value == null) Calendar.getInstance() else viewModel.birthday.value!!
         val datePickerDialog = DatePickerDialog(
@@ -153,6 +152,7 @@ class LoginFragment : Fragment(){
         )
         datePickerDialog.show()
     }
+
     private fun showBirthday() {
         binding.birthDay.text = viewModel.getBirthdayString()
         TransitionManager.beginDelayedTransition(binding.root as ViewGroup)

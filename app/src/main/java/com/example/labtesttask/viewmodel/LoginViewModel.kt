@@ -50,7 +50,7 @@ class LoginViewModel(private val profileRepository: ProfileRepository) : ViewMod
 
     private val _passwordProofError = MutableLiveData(false)
     val passwordProofError: LiveData<Boolean>
-        get() = _firstNameError
+        get() = _passwordProofError
 
     private val _birthDateError = MutableLiveData(false)
     val birthDateError: LiveData<Boolean>
@@ -60,40 +60,36 @@ class LoginViewModel(private val profileRepository: ProfileRepository) : ViewMod
     val ageError: LiveData<Boolean>
         get() = _ageError
 
-    fun validate(): Boolean{
+    fun validate(): Boolean {
 
-        if(firstName.value?.length!! <=1) {
+        if (firstName.value?.length!! <= 1) {
             _firstNameError.value = true
             return false
         }
 
-        if(secondName.value?.length!!<=1) {
+        if (secondName.value?.length!! <= 1) {
             _secondNameError.value = true
             return false
         }
 
         if (!password.value.toString().containsLower() ||
             !password.value.toString().containsUpper() || !password.value.toString().containsDigits()
-        )
-        {
+        ) {
             _passwordError.value = true
             return false
         }
 
-        if(password.value != passwordProof.value)
-        {
+        if (password.value != passwordProof.value) {
             _passwordProofError.value = true
             return false
         }
 
-        if(age.value == null)
-        {
+        if (age.value == null) {
             _birthDateError.value = true
             return false
         }
 
-        if(age.value!! <=12)
-        {
+        if (age.value!! <= 12) {
             _ageError.value = true
             return false
         }
@@ -105,7 +101,8 @@ class LoginViewModel(private val profileRepository: ProfileRepository) : ViewMod
             "${birthday.value?.get(Calendar.DAY_OF_MONTH)}." +
                     "${birthday.value?.get(Calendar.MONTH)}." +
                     "${birthday.value?.get(Calendar.YEAR)}"
-        val profile = Profile(firstName.value!!, secondName.value!!, password.value!!, birthdayString)
+        val profile =
+            Profile(firstName.value!!, secondName.value!!, password.value!!, birthdayString)
         viewModelScope.launch {
             profileRepository.writeProfile(profile)
             _isRegFinished.value = true
@@ -129,7 +126,7 @@ class LoginViewModel(private val profileRepository: ProfileRepository) : ViewMod
     }
 
     private fun String.containsDigits(): Boolean {
-        forEach{
+        forEach {
             if (it.isDigit())
                 return true
         }
