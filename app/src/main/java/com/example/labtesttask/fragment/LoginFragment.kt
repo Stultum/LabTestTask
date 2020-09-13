@@ -2,7 +2,6 @@ package com.example.labtesttask.fragment
 
 import android.app.DatePickerDialog
 import android.content.Context
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.transition.TransitionManager
 import androidx.fragment.app.Fragment
@@ -14,6 +13,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.example.labtesttask.R
 import com.example.labtesttask.databinding.LoginFragmentBinding
 import com.example.labtesttask.repository.ProfileRepository
@@ -41,7 +41,19 @@ class LoginFragment : Fragment() {
 
         binding.pickDate.setOnClickListener { showDatePicker() }
         viewModel.birthday.observe(this, Observer { showBirthday() })
+        viewModel.isRegFinished.observe(this, Observer {
+            finishReg(binding.root, it)
+        })
         return binding.root
+    }
+
+    private fun finishReg(view: View, isProfileLogged: Boolean) {
+        if (!isProfileLogged) {
+            view.findNavController()
+                .navigate(R.id.action_loginFragment_to_mainWindowFragment_without_anim)
+        } else {
+            view.findNavController().navigate(R.id.action_loginFragment_to_mainWindowFragment)
+        }
     }
 
     private fun initViewModel() {

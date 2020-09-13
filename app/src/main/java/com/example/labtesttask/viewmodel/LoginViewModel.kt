@@ -1,6 +1,7 @@
 package com.example.labtesttask.viewmodel
 
 import androidx.lifecycle.*
+import com.example.labtesttask.profile.LoginedProfile
 import com.example.labtesttask.repository.ProfileRepository
 import com.example.shiftlabtesttask.profile.Profile
 import kotlinx.coroutines.launch
@@ -59,6 +60,20 @@ class LoginViewModel(private val profileRepository: ProfileRepository) : ViewMod
     private val _ageError = MutableLiveData(false)
     val ageError: LiveData<Boolean>
         get() = _ageError
+
+    init {
+        viewModelScope.launch {
+            if (profileRepository.isContainLoggedProfile()) {
+                loadProfile()
+                _isRegFinished.value = false
+            }
+        }
+    }
+
+    private suspend fun loadProfile() {
+        val profile = profileRepository.readProfile()
+        LoginedProfile.init(profile)
+    }
 
     fun validate(): Boolean {
 

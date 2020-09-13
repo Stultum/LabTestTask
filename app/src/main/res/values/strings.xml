@@ -15,4 +15,6 @@
     <string name="age">Возраст: %1$d</string>
     <string name="birthday">Дата рождения</string>
     <string name="birthday_with_data">Дата рождения: %1$s</string>
+    <string name="hello">Нажми на кнопку</string>
+    <string name="leaveAccount">Выйти</string>
 </resources>
