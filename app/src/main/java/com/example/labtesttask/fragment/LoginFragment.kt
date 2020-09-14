@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -163,6 +164,11 @@ class LoginFragment : Fragment() {
             calendar.get(Calendar.DAY_OF_MONTH)
         )
         datePickerDialog.show()
+    }
+
+    private fun showDatePicker2() {
+        val fragment: DialogFragment = DatePickerClass()
+        fragment.show(fragmentManager!!, "Date Picker")
     }
 
     private fun showBirthday() {
