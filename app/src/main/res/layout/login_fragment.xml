@@ -19,7 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="15dp">
+            android:padding="15dp"
+            android:background="@drawable/background_gradient">
 
             <TextView
                 android:id="@+id/registerText"
@@ -30,7 +31,7 @@
                 android:fontFamily="@font/rubik_mono_one"
                 android:text="@string/register"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/font_color"
                 android:textSize="36sp" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -79,7 +80,7 @@
                     android:fontFamily="@font/rubik_mono_one"
                     android:text="@{loginViewModel.birthday == null? @string/birthday : @string/birthday_with_data(loginViewModel.getBirthdayString())}"
                     android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/font_color"
                     android:textSize="20sp"
                     android:visibility="gone"
                     app:layout_constraintBottom_toTopOf="@+id/age"
@@ -95,7 +96,7 @@
                     android:fontFamily="@font/rubik_mono_one"
                     android:text="@{@string/age(loginViewModel.age)}"
                     android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/font_color"
                     android:textSize="20sp"
                     android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -165,6 +166,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/defaultMargin"
                 android:layout_marginBottom="@dimen/defaultMargin"
+                android:textColor="@color/font_color"
                 android:background="@drawable/button_background_transparent"
                 android:enabledAndBackground="@{!(loginViewModel.firstName.empty || loginViewModel.secondName.empty || loginViewModel.password.empty || loginViewModel.passwordProof.empty)}"
                 android:fontFamily="@font/rubik_mono_one"

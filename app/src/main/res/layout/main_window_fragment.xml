@@ -13,14 +13,18 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/background_gradient">
 
         <Button
             android:id="@+id/buttonHello"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/button_background"
             android:text="@string/hello"
+            android:textColor="@color/font_bright_color"
             app:layout_constraintBottom_toTopOf="@+id/buttonLeave"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/buttonLeave"
@@ -32,9 +36,12 @@
             android:id="@+id/buttonLeave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/button_background_transparent"
-            android:text="@string/leaveAccount"
             android:onClick="@{()->mainWindowViewModel.leaveAccount()}"
+            android:text="@string/leaveAccount"
+            android:textColor="@color/font_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

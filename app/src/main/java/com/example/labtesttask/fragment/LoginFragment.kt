@@ -166,11 +166,6 @@ class LoginFragment : Fragment() {
         datePickerDialog.show()
     }
 
-    private fun showDatePicker2() {
-        val fragment: DialogFragment = DatePickerClass()
-        fragment.show(fragmentManager!!, "Date Picker")
-    }
-
     private fun showBirthday() {
         binding.birthDay.text = viewModel.getBirthdayString()
         TransitionManager.beginDelayedTransition(binding.root as ViewGroup)
