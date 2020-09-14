@@ -17,4 +17,6 @@
     <string name="birthday_with_data">Дата рождения: %1$s</string>
     <string name="hello">Нажми на кнопку</string>
     <string name="leaveAccount">Выйти</string>
+    <string name="helloString">Здравуствуйте, %1$s! Хорошего вам дня!</string>
+    <string name="goodBye">Спасибо!</string>
 </resources>
