@@ -1,4 +1,4 @@
-package com.example.shiftlabtesttask.profile
+package com.example.labtesttask.database
 
 import java.io.Serializable
 

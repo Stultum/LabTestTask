@@ -16,6 +16,7 @@ import androidx.navigation.findNavController
 import com.example.labtesttask.R
 import com.example.labtesttask.activity.MainActivity
 import com.example.labtesttask.databinding.MainWindowFragmentBinding
+import com.example.labtesttask.database.LoginedProfile
 import com.example.labtesttask.repository.ProfileRepository
 import com.example.labtesttask.viewmodel.LoginViewModel
 import com.example.labtesttask.viewmodel.MainWindowViewModel
@@ -30,17 +31,15 @@ class MainWindowFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.main_window_fragment, container, false)
-        binding.lifecycleOwner = this
 
         initViewModel()
 
-        binding.buttonHello.setOnClickListener { showHelloDialog() }
-
         viewModel.isAccountLeave.observe(this, Observer {
-            if(it){
-                leaveAccount(binding.root)
-            }
+            leaveAccount(binding.root)
+
         })
+
+        binding.buttonHello.setOnClickListener { showHelloDialog() }
 
         return binding.root
     }
@@ -63,13 +62,12 @@ class MainWindowFragment : Fragment() {
         binding.mainWindowViewModel = viewModel
     }
 
-    private fun showHelloDialog(){
-        val dialogBuilder = AlertDialog.Builder(this as Context)
-        dialogBuilder.setView(R.layout.hello_dialog_fragment)
-        dialogBuilder.show()
+    private fun showHelloDialog() {
+        val helloDialogFragment = HelloDialogFragment.newInstance(LoginedProfile.profile)
+        helloDialogFragment.show(childFragmentManager, "")
     }
 
-    private fun leaveAccount(view: View){
+    private fun leaveAccount(view: View) {
         view.findNavController().navigate(R.id.action_mainWindowFragment_to_loginFragment)
     }
 }

@@ -1,7 +1,7 @@
 package com.example.labtesttask.repository
 
 import android.content.SharedPreferences
-import com.example.shiftlabtesttask.profile.Profile
+import com.example.labtesttask.database.Profile
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

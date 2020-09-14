@@ -12,7 +12,7 @@ class MainWindowViewModel(private val profileRepository: ProfileRepository) : Vi
     val isAccountLeave: LiveData<Boolean>
         get() = _isAccountLeave
 
-    fun leaveAccount(){
+    fun leaveAccount() {
         viewModelScope.launch {
             profileRepository.clearProfile()
             _isAccountLeave.value = true

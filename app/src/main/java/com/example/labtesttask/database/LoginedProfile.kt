@@ -1,6 +1,5 @@
-package com.example.labtesttask.profile
+package com.example.labtesttask.database
 
-import com.example.shiftlabtesttask.profile.Profile
 
 object LoginedProfile {
     lateinit var profile: Profile

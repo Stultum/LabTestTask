@@ -1,9 +1,9 @@
 package com.example.labtesttask.viewmodel
 
 import androidx.lifecycle.*
-import com.example.labtesttask.profile.LoginedProfile
+import com.example.labtesttask.database.LoginedProfile
 import com.example.labtesttask.repository.ProfileRepository
-import com.example.shiftlabtesttask.profile.Profile
+import com.example.labtesttask.database.Profile
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -118,6 +118,7 @@ class LoginViewModel(private val profileRepository: ProfileRepository) : ViewMod
                     "${birthday.value?.get(Calendar.YEAR)}"
         val profile =
             Profile(firstName.value!!, secondName.value!!, password.value!!, birthdayString)
+        LoginedProfile.init(profile)
         viewModelScope.launch {
             profileRepository.writeProfile(profile)
             _isRegFinished.value = true
