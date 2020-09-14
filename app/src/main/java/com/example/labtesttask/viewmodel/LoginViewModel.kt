@@ -104,7 +104,7 @@ class LoginViewModel(private val profileRepository: ProfileRepository) : ViewMod
             return false
         }
 
-        if (age.value!! <= 12) {
+        if (age.value!! < 12) {
             _ageError.value = true
             return false
         }

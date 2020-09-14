@@ -10,18 +10,19 @@
             name="profile"
             type="com.example.labtesttask.database.Profile" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_gravity="center">
+        android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardBackgroundColor="@color/font_bright_color"
             app:cardCornerRadius="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +47,7 @@
                     android:fontFamily="@font/rubik_mono_one"
                     android:text="@{@string/helloString(profile.name)}"
                     android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/font_color"
                     android:textSize="19sp"
                     app:layout_constraintBottom_toTopOf="@id/smileFace" />
 
@@ -66,14 +67,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:background="@drawable/button_background_transparent"
+                    android:background="@drawable/button_background"
                     android:fontFamily="@font/rubik_mono_one"
+                    android:padding="10dp"
                     android:text="@string/goodBye"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/smileFace"
-                    />
+                    app:layout_constraintTop_toBottomOf="@id/smileFace" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.example.labtesttask.fragment
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.transition.TransitionManager
 import androidx.fragment.app.Fragment
@@ -152,7 +153,7 @@ class LoginFragment : Fragment() {
         val calendar =
             if (viewModel.birthday.value == null) Calendar.getInstance() else viewModel.birthday.value!!
         val datePickerDialog = DatePickerDialog(
-            this.context!!,
+            this.context!!, R.style.MyDatePickerDialogTheme,
             DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
                 calendar.set(Calendar.YEAR, year)
                 calendar.set(Calendar.MONTH, month)
