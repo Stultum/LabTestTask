@@ -13,12 +13,12 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragment.LoginFragment">
+        tools:context=".fragment.LoginFragment"
+        android:background="@drawable/background_gradient">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_gradient"
             android:orientation="vertical"
             android:padding="15dp">
 
@@ -174,7 +174,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/defaultMargin"
-                android:layout_marginBottom="@dimen/defaultMargin"
+                android:layout_gravity="bottom"
                 android:background="@drawable/button_background_transparent"
                 android:enabledAndBackground="@{!(loginViewModel.firstName.empty || loginViewModel.secondName.empty || loginViewModel.password.empty || loginViewModel.passwordProof.empty)}"
                 android:fontFamily="@font/rubik_mono_one"
